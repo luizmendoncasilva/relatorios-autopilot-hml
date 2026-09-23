@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Contrato de Experiência</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@500;700;800;900&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #ebebed; font-family: 'Nunito Sans', sans-serif; }
+
+  .bh-topbar{position:sticky;top:0;z-index:50;background:#0f1726;padding:14px 28px;display:flex;align-items:center;gap:16px;font-family:'Nunito Sans',sans-serif;}
+  .bh-voltar{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;font-family:inherit;font-size:13px;font-weight:800;padding:8px 14px;border-radius:8px;cursor:pointer;text-decoration:none;transition:background .15s;}
+  .bh-voltar:hover{background:rgba(255,255,255,.16);}
+  .bh-voltar svg{flex-shrink:0;}
+  .bh-topbar-brand{display:flex;align-items:center;gap:9px;margin-left:4px;}
+  .bh-topbar-title{font-size:14px;font-weight:900;color:#fff;letter-spacing:-.02em;}
+  .bh-topbar-sub{font-size:10px;font-weight:700;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.06em;}
+  .bh-disclaimer{max-width:794px;margin:16px auto;padding:9px 16px;background:#f7f7f8;border:1px solid #e4e4e7;border-radius:8px;font-family:'Nunito Sans',sans-serif;font-size:10.5px;font-weight:500;color:#71717a;text-align:center;line-height:1.5;}
+
+  /* ==========================================================================
+     Design tokens e classes compartilhadas por todos os documentos "doc-*".
+     Baseado no modelo do "Relatório dos Arquivos Validados" (BHub).
+     ========================================================================== */
+
+  :root {
+    --brandPink: #f25461;
+    --brandPinkSoft: #fde7ea;
+    --brandBlue: #0171e4;
+    --textPrimary: #18181b;
+    --textSecondary: #52525b;
+    --border: #e4e4e7;
+    --borderStrong: #d4d4d8;
+    --surface: #ffffff;
+    --surfaceMuted: #f7f7f8;
+    --pageBg: #ebebed;
+  }
+
+  .doc-root {
+    margin: 0;
+    background: var(--pageBg);
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+  .doc-pages {
+    padding: 0 0 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ---------- Página A4 ---------- */
+
+  .doc-page {
+    width: 794px;
+    height: 1123px;
+    background: var(--surface);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ---------- Cabeçalho ---------- */
+
+  .doc-cabecalho {
+    height: 88px;
+    flex: 0 0 88px;
+    border-bottom: 2px solid var(--borderStrong);
+    padding: 12px 24px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .doc-cabecalho-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .doc-cabecalho-brand {
+    display: flex;
+    align-items: center;
+  }
+
+  .doc-cabecalho-brand svg {
+    flex-shrink: 0;
+  }
+
+  .doc-cabecalho-titulo {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--textPrimary);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    text-align: right;
+  }
+
+  .doc-cabecalho-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2px;
+    column-gap: 24px;
+    font-size: 10px;
+  }
+
+  .doc-cabecalho-grid .label {
+    font-weight: 500;
+    color: var(--textSecondary);
+  }
+
+  .doc-cabecalho-grid .value {
+    font-weight: 700;
+    color: var(--textPrimary);
+  }
+
+  .doc-cabecalho-col-right {
+    text-align: right;
+  }
+
+  /* ---------- Conteúdo ---------- */
+
+  .doc-conteudo {
+    flex: 1 1 auto;
+    padding: 24px 32px 0;
+    overflow: hidden;
+    font-size: 11px;
+    color: var(--textPrimary);
+    line-height: 1.5;
+  }
+
+  .doc-titulo-principal {
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin: 0 0 18px;
+    color: var(--textPrimary);
+  }
+
+  .doc-subtitulo {
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--textSecondary);
+    margin: -14px 0 18px;
+  }
+
+  .doc-paragraph {
+    margin: 0 0 10px;
+    font-weight: 500;
+    color: var(--textPrimary);
+  }
+
+  .doc-paragraph strong {
+    font-weight: 800;
+  }
+
+  .doc-section-title {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--brandPink);
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    margin: 16px 0 4px;
+  }
+
+  .doc-section-subtitle {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--textPrimary);
+    margin: 0 0 6px;
+  }
+
+  .doc-list {
+    margin: 0 0 10px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .doc-list li {
+    position: relative;
+    padding-left: 12px;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .doc-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--textSecondary);
+  }
+
+  .doc-list.doc-list-numbered li::before {
+    content: none;
+  }
+
+  /* ---------- Linha de campo (label: valor) ---------- */
+
+  .doc-field-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .doc-field-row .doc-field-label {
+    color: var(--textSecondary);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .doc-field-row .doc-field-value {
+    color: var(--textPrimary);
+    font-weight: 700;
+  }
+
+  /* ---------- Checkbox de opção ---------- */
+
+  .doc-checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+
+  .doc-checkbox-box {
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid var(--textPrimary);
+    border-radius: 2px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+  }
+
+  /* ---------- Assinaturas ---------- */
+
+  .doc-signature-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 36px;
+  }
+
+  .doc-signature-block {
+    flex: 1;
+    text-align: center;
+  }
+
+  .doc-signature-line {
+    border-top: 1px solid var(--textPrimary);
+    margin-bottom: 6px;
+  }
+
+  .doc-signature-name {
+    font-weight: 800;
+    font-size: 10.5px;
+  }
+
+  .doc-signature-caption {
+    font-weight: 500;
+    color: var(--textSecondary);
+    font-size: 9.5px;
+  }
+
+  /* ---------- Tabela simples (horários, valores) ---------- */
+
+  .doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 16px;
+  }
+
+  .doc-table thead tr {
+    background: var(--brandPink);
+    height: 24px;
+  }
+
+  .doc-table thead th {
+    font-size: 9px;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 0 8px;
+    letter-spacing: 0.2px;
+  }
+
+  .doc-table tbody tr {
+    height: 22px;
+  }
+
+  .doc-table tbody tr:nth-child(even) {
+    background: var(--surfaceMuted);
+  }
+
+  .doc-table tbody td {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 0 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .doc-table tbody td.secundario {
+    color: var(--textSecondary);
+    font-weight: 500;
+  }
+
+  /* ---------- Grade de formulário (Ficha de Registro, Vale-Transporte) ---------- */
+
+  .doc-form-grid {
+    border: 1px solid var(--borderStrong);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .doc-form-row {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .doc-form-row:last-child {
+    border-bottom: none;
+  }
+
+  .doc-form-cell {
+    flex: 1;
+    padding: 5px 8px;
+    border-right: 1px solid var(--border);
+  }
+
+  .doc-form-cell:last-child {
+    border-right: none;
+  }
+
+  .doc-form-cell .doc-field-label {
+    display: block;
+    font-size: 8.5px;
+    color: var(--textSecondary);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1px;
+  }
+
+  .doc-form-cell .doc-field-value {
+    font-size: 10.5px;
+  }
+
+  .doc-form-header {
+    background: var(--brandPinkSoft);
+    border-bottom: 2px solid var(--brandPink);
+    padding: 5px 8px;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--textPrimary);
+  }
+
+  /* ---------- Rodapé ---------- */
+
+  .doc-rodape {
+    height: 40px;
+    flex: 0 0 40px;
+    border-top: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--textSecondary);
+  }
+
+  .doc-rodape-logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .doc-rodape-logo svg {
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+
+  .doc-rodape-page {
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="bh-topbar">
+  <a class="bh-voltar" href="index.html">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Voltar
+  </a>
+  <div class="bh-topbar-brand">
+    <svg width="97.5" height="22" viewBox="0 0 838 189" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#fff;flex-shrink:0;">
+<path d="M228.928 0.682856C245.158 0.714856 296.449 -0.546141 309.268 1.91286C316.918 3.34486 324.201 6.30286 330.683 10.6089C356.975 28.2319 363.142 63.0908 345.525 89.2208C367.985 110.853 372.102 139.921 354.63 166.122C352.982 168.416 350.982 170.512 348.979 172.502C341.911 179.432 333.086 184.302 323.455 186.586C310.582 189.726 246.872 188.383 228.928 188.347V0.682856ZM315.738 74.5519C319.363 69.6929 323.226 63.2789 322.683 56.9099C320.094 26.5259 283.905 33.8459 262 33.6829V81.4439C278.891 81.5949 303.113 84.8299 315.738 74.5519ZM262 155.347C274.876 155.428 287.757 155.533 300.632 155.615C310.668 155.679 317.443 155.702 325.598 149.207C354.822 106.947 281.918 114.448 262 114.586V155.347Z" fill="currentColor"/>
+<path d="M698 0.682861H731.168L731.218 64.1399C741.407 54.8309 752.903 50.8119 766.698 50.4709C785.349 50.1049 803.387 57.1369 816.87 70.0289C829.78 82.4389 837.225 99.4739 837.563 117.379C837.983 138.332 829.782 154.724 815.549 169.478C814.967 170.024 814.37 170.554 813.76 171.068C787.425 193.266 754.497 196.524 731.167 168.743L731.168 188.347H698V0.682861ZM769.499 155.313C789.733 154.476 805.462 137.402 804.639 117.166C803.815 96.9309 786.751 81.1909 766.515 82.0009C746.26 82.8119 730.502 99.8959 731.326 120.15C732.151 140.404 749.245 156.151 769.499 155.313Z" fill="currentColor"/>
+<path d="M383.072 0.682861H416.302V80.5869H486.49V0.682861H519.832V184.765C519.894 185.428 519.441 186.929 519.259 187.65C514.396 189.189 492.69 188.447 486.49 188.347V113.515H416.302V188.347H383.072V0.682861Z" fill="currentColor"/>
+<path d="M539 49.6829H572.071C572.034 62.5809 570.867 116.957 573.366 127.081C574.96 133.689 578.301 139.748 583.039 144.622C602.444 164.215 639.952 153.237 643.635 127.09C646.826 104.439 645.087 73.1939 645 49.6829H678.071V101.015V187.586H645V168.096C623.449 198.102 583.586 190.679 559.626 167.612C537.589 146.396 538.866 121.242 538.896 93.1839L539 49.6829Z" fill="currentColor"/>
+<path d="M0 16.2679C2.51395 10.2149 5.38004 4.70588 11.7954 1.98588C17.4184 -0.398123 169.426 -0.83912 175.662 1.78688C179.626 3.45488 184.447 7.06888 186.062 11.1819C187.556 14.9899 187.898 19.9629 188.088 24.0179C189.474 53.6259 188.262 83.8769 188.224 113.548C188.199 133.685 189.795 155.209 187.805 175.161C185.122 179.652 179.614 187.639 173.819 187.843C122.643 189.645 71.0166 188.431 19.7489 188.336C8.46048 188.315 3.65794 182.337 0 172.513V16.2679ZM94 103.525L131.403 66.1219C122.984 57.5609 102.795 34.4419 93.1391 32.4209C85.3881 34.9439 63.1712 59.2639 56.5 66.0249L94 103.525ZM102.042 111.973C107.564 117.551 131.942 142.819 136.976 145.729C145.418 145.427 149.808 140.053 155.401 133.681C160.451 127.927 171.643 119.595 172.966 113.441C171.862 103.418 147.723 82.6129 139.464 74.5509L102.042 111.973ZM52.1395 144.796C63.3918 134.345 74.5298 122.841 85.3959 111.921L47.895 74.4209C40.3975 81.8079 17.5077 101.893 15.0981 111.024C13.381 117.531 40.6524 145.249 48.3926 145.231C49.2182 145.229 51.1548 144.982 52.1395 144.796Z" fill="currentColor"/>
+</svg>
+    <div class="bh-topbar-sub">Motor DP · Contrato de Experiência</div>
+  </div>
+</div>
+
+<div class="bh-disclaimer">Os dados apresentados neste documento são apenas para fins visuais de layout, simulando de forma fictícia as informações para melhor visualização do mesmo.</div>
+
+<div class="doc-root">
+  <div class="doc-pages">
+    <div class="doc-page">
+      <div class="doc-cabecalho">
+        <div class="doc-cabecalho-top">
+          <div class="doc-cabecalho-brand">
+<svg width="142.2" height="26" viewBox="0 0 2144 392" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#18181b;flex-shrink:0;">
+<path d="M1339.34 36.4545C1389.87 33.1576 1433.53 71.4036 1436.92 121.934C1440.31 172.464 1402.14 216.193 1351.61 219.669C1300.96 223.152 1257.1 184.867 1253.71 134.211C1250.31 83.5546 1288.67 39.7597 1339.34 36.4545ZM1355.85 173.776C1382.95 166.665 1394.5 140.19 1387.49 114.159C1384.27 102.492 1376.58 92.5663 1366.08 86.5329C1356.09 80.8489 1346.8 80.8596 1335.64 82.1858C1308 90.4248 1294.94 115.33 1303.28 142.92C1306.67 154.491 1314.57 164.212 1325.21 169.894C1335.54 175.364 1344.62 175.679 1355.85 173.776Z" fill="currentColor"/>
+<path d="M1455.17 41.9284H1499.56C1520.09 68.3914 1540.94 98.4765 1560.31 126.031C1561.86 99.1216 1560.76 69.5329 1561.89 41.9284H1608.7C1608.7 58.0209 1609.42 210.501 1607.78 213.302H1565.72C1553.92 201.718 1552.52 194.351 1543.59 182.117C1529.99 163.507 1516.55 144.976 1503.19 126.183C1502.95 155.225 1502.54 184.265 1501.97 213.302H1455.17V41.9284Z" fill="currentColor"/>
+<path d="M1877.7 41.9284H2001.07V81.985C1976.02 82.613 1950.96 83.0668 1925.91 83.3462C1925.13 90.9261 1924.91 100.34 1924.53 108.072H1992V145.832C1969.72 145.793 1946.73 145.489 1924.51 146.002V173H2002.51V213.302H1877.7V41.9284Z" fill="currentColor"/>
+<path d="M1177.74 38.388C1178.84 38.2342 1179.96 38.1284 1181.07 38.0708C1208.97 36.689 1230.91 44.8923 1250.52 65.0165C1253.28 67.8511 1256.48 70.4372 1256.66 74.6546C1255.35 79.4471 1228.83 97.7521 1223.31 101.927C1209.77 92.8733 1202.71 82.503 1183.43 82.9415C1173.22 83.0923 1163.5 87.3831 1156.5 94.8319C1119.49 133.933 1169.69 210.106 1222.85 153.401C1230.02 156.472 1235.34 160.645 1241.49 165.259L1259.13 178.368C1231.64 222.165 1166.5 230.706 1127.18 199.097C1108.61 184.113 1096.75 162.376 1094.2 138.657C1088.49 84.4548 1124.43 43.9619 1177.74 38.388Z" fill="currentColor"/>
+<path d="M1630.83 41.9284H1764.7L1764.63 84.8325H1721.7V169.5V213.302H1673.7V84.8325H1630.83V41.9284Z" fill="currentColor"/>
+<path d="M1805.24 40.5755C1819.79 39.8661 1838.17 40.4374 1853 40.49C1853.03 69.639 1856.72 156.057 1848.55 178.983C1843.7 192.576 1834.07 203.013 1821.01 209.135C1805.07 216.608 1788.07 218.179 1771.52 212.216C1756.22 204.062 1748.01 195.219 1740.29 179.278C1732.98 164.161 1762.48 157.721 1773.71 153.577C1776.36 159.891 1780.76 172.495 1788.99 172.946C1801.25 173.618 1804.13 161.873 1804.21 151.976C1804.42 127.046 1804.26 102.128 1804.47 77.1992C1804.62 65.3319 1804.14 52.3155 1805.24 40.5755Z" fill="currentColor"/>
+<path d="M1937.47 249.5L2052.27 249.506C2060.22 249.505 2108.03 248.207 2111.41 251.242C2111.68 253.967 2111.99 255.31 2110.8 257.803C2106.73 260.088 2028.91 258.985 2019.17 258.98L1839.84 258.942L1292.5 258.928L1186.04 258.869C1164.29 258.914 1142.11 259.315 1120.39 258.545C1118.1 258.464 1118.74 258.634 1117.16 256.865C1116.75 253.087 1116.5 254.396 1118.07 250.966C1120.68 248.985 1176.65 249.746 1185.6 249.736L1326.66 249.701L1728.25 249.718C1796.59 249.722 1869.43 251.037 1937.47 249.5Z" fill="currentColor"/>
+</svg>
+          </div>
+          <div class="doc-cabecalho-titulo">Contrato de Experiência</div>
+        </div>
+        <div class="doc-cabecalho-grid">
+          <span><span class="label">Empresa: </span><span class="value">RV ARAUJO LTDA</span></span>
+          <span class="doc-cabecalho-col-right"><span class="label">CNPJ: </span><span class="value">20.352.796/0001-59</span></span>
+          <span><span class="label">Empregado: </span><span class="value">ARISTEU JOSE CARDOSO JUNIOR</span></span>
+          <span class="doc-cabecalho-col-right"><span class="label">CTPS/Série: </span><span class="value">2197077/5890</span></span>
+        </div>
+      </div>
+
+      <div class="doc-conteudo">
+        <h1 class="doc-titulo-principal">Contrato de Experiência</h1>
+
+        <p class="doc-paragraph">
+          Pelo presente instrumento particular de Contrato de Experiência, a empresa
+          <strong>RV ARAUJO LTDA</strong>, com sede à RUA R SERRA DA BORBOREMA, 230, CAMPANARIO, DIADEMA, SP, inscrita no CNPJ do MF sob
+          nº <strong>20.352.796/0001-59</strong>, denominada Empregadora, e o Sr.(a)
+          <strong>ARISTEU JOSE CARDOSO JUNIOR</strong>, domiciliado à ALAMEDA DO IMPERADOR, portador da CTPS
+          nº/série
+          <strong>2197077/5890</strong>, doravante chamado Empregado, fica justo e acertado o presente contrato individual de
+          trabalho, regido pelas seguintes cláusulas:
+        </p>
+
+        <ol class="doc-list doc-list-numbered" style="padding-left:16px;">
+          <li>
+            O Empregado trabalhará para a Empregadora na função de <strong>PREPARADOR MAQUINA INJETORA</strong> e mais
+            as funções que vierem a ser objeto de ordens verbais, cartas ou avisos, segundo as
+            necessidades da Empregadora, desde que compatíveis com suas atribuições.
+          </li>
+          <li>
+            O local de trabalho situa-se o mesmo da empresa, podendo a Empregadora, a qualquer
+            tempo, transferir o Empregado a título temporário ou definitivo, tanto no âmbito da
+            unidade para a qual foi admitido como para outras, em qualquer localidade deste Estado
+            ou de outro dentro do país, em conformidade com o § 1º do art. 469 da CLT.
+          </li>
+          <li>
+            O horário de trabalho do empregado será o seguinte:
+            <table class="doc-table" style="margin-top:8px;">
+              <thead>
+                <tr>
+                  <th>Dia</th>
+                  <th>Expediente</th>
+                  <th>Intervalo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Segunda à Sexta</td>
+                  <td>05:20 às 14:20</td>
+                  <td class="secundario">12:00 às 13:00</td>
+                </tr>
+                <tr>
+                  <td>Sábado</td>
+                  <td>09:00 às 13:15</td>
+                  <td class="secundario">10:15 às 10:30</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li>
+            O Empregado perceberá a remuneração de R$ 3.600,00 por mês (TRÊS MIL E SEISCENTOS REAIS).
+          </li>
+          <li>
+            O prazo deste contrato é de 45 dias, com início em 10/09/2026 e término em
+            24/10/2026.
+          </li>
+          <li>
+            Além dos descontos previstos na Lei, reserva-se a Empregadora o direito de descontar
+            do Empregado as importâncias correspondentes aos danos causados por ele, com
+            fundamento no § 1º do art. 462 da CLT.
+          </li>
+          <li>
+            O Empregado fica ciente do Regulamento da Empresa e das Normas de Segurança que
+            regulam suas atividades e se compromete a usar os equipamentos de segurança
+            fornecidos, sob pena de ser punido por falta grave, nos termos da legislação vigente.
+          </li>
+          <li>
+            Permanecendo o Empregado a serviço da Empregadora após o término da experiência,
+            continuarão em vigor as cláusulas constantes deste contrato.
+          </li>
+          <li>
+            A rescisão do presente contrato, sem justa causa, por parte da empregadora ou do
+            empregado, antes do término do contrato, implicará em indenização, e por metade, a
+            indenização que teria direito até o término do contrato, conforme art. 479 e 480 da
+            CLT.
+          </li>
+        </ol>
+
+        <p class="doc-paragraph">
+          Tendo assim contratado, assinam o presente instrumento, em duas vias, na presença da
+          testemunha abaixo.
+        </p>
+
+        <p class="doc-paragraph" style="margin-top:16px;">
+          DIADEMA, 10 de Setembro de 2026.
+        </p>
+
+        <div class="doc-signature-row" style="margin-top:46px;">
+          <div class="doc-signature-block">
+            <div class="doc-signature-line"></div>
+            <div class="doc-signature-name">RV ARAUJO LTDA</div>
+          </div>
+          <div class="doc-signature-block">
+            <div class="doc-signature-line"></div>
+            <div class="doc-signature-name">ARISTEU JOSE CARDOSO JUNIOR</div>
+          </div>
+        </div>
+        <div class="doc-signature-row" style="margin-top:40px;">
+          <div class="doc-signature-block">
+            <div class="doc-signature-line"></div>
+            <div class="doc-signature-caption">Testemunha</div>
+          </div>
+          <div class="doc-signature-block">
+            <div class="doc-signature-line"></div>
+            <div class="doc-signature-caption">Responsável, quando for menor</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-rodape">
+        <span class="doc-rodape-logo">
+          powered by <svg width="48.8" height="11" viewBox="0 0 838 189" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#18181b;flex-shrink:0;vertical-align:middle;">
+<path d="M228.928 0.682856C245.158 0.714856 296.449 -0.546141 309.268 1.91286C316.918 3.34486 324.201 6.30286 330.683 10.6089C356.975 28.2319 363.142 63.0908 345.525 89.2208C367.985 110.853 372.102 139.921 354.63 166.122C352.982 168.416 350.982 170.512 348.979 172.502C341.911 179.432 333.086 184.302 323.455 186.586C310.582 189.726 246.872 188.383 228.928 188.347V0.682856ZM315.738 74.5519C319.363 69.6929 323.226 63.2789 322.683 56.9099C320.094 26.5259 283.905 33.8459 262 33.6829V81.4439C278.891 81.5949 303.113 84.8299 315.738 74.5519ZM262 155.347C274.876 155.428 287.757 155.533 300.632 155.615C310.668 155.679 317.443 155.702 325.598 149.207C354.822 106.947 281.918 114.448 262 114.586V155.347Z" fill="currentColor"/>
+<path d="M698 0.682861H731.168L731.218 64.1399C741.407 54.8309 752.903 50.8119 766.698 50.4709C785.349 50.1049 803.387 57.1369 816.87 70.0289C829.78 82.4389 837.225 99.4739 837.563 117.379C837.983 138.332 829.782 154.724 815.549 169.478C814.967 170.024 814.37 170.554 813.76 171.068C787.425 193.266 754.497 196.524 731.167 168.743L731.168 188.347H698V0.682861ZM769.499 155.313C789.733 154.476 805.462 137.402 804.639 117.166C803.815 96.9309 786.751 81.1909 766.515 82.0009C746.26 82.8119 730.502 99.8959 731.326 120.15C732.151 140.404 749.245 156.151 769.499 155.313Z" fill="currentColor"/>
+<path d="M383.072 0.682861H416.302V80.5869H486.49V0.682861H519.832V184.765C519.894 185.428 519.441 186.929 519.259 187.65C514.396 189.189 492.69 188.447 486.49 188.347V113.515H416.302V188.347H383.072V0.682861Z" fill="currentColor"/>
+<path d="M539 49.6829H572.071C572.034 62.5809 570.867 116.957 573.366 127.081C574.96 133.689 578.301 139.748 583.039 144.622C602.444 164.215 639.952 153.237 643.635 127.09C646.826 104.439 645.087 73.1939 645 49.6829H678.071V101.015V187.586H645V168.096C623.449 198.102 583.586 190.679 559.626 167.612C537.589 146.396 538.866 121.242 538.896 93.1839L539 49.6829Z" fill="currentColor"/>
+<path d="M0 16.2679C2.51395 10.2149 5.38004 4.70588 11.7954 1.98588C17.4184 -0.398123 169.426 -0.83912 175.662 1.78688C179.626 3.45488 184.447 7.06888 186.062 11.1819C187.556 14.9899 187.898 19.9629 188.088 24.0179C189.474 53.6259 188.262 83.8769 188.224 113.548C188.199 133.685 189.795 155.209 187.805 175.161C185.122 179.652 179.614 187.639 173.819 187.843C122.643 189.645 71.0166 188.431 19.7489 188.336C8.46048 188.315 3.65794 182.337 0 172.513V16.2679ZM94 103.525L131.403 66.1219C122.984 57.5609 102.795 34.4419 93.1391 32.4209C85.3881 34.9439 63.1712 59.2639 56.5 66.0249L94 103.525ZM102.042 111.973C107.564 117.551 131.942 142.819 136.976 145.729C145.418 145.427 149.808 140.053 155.401 133.681C160.451 127.927 171.643 119.595 172.966 113.441C171.862 103.418 147.723 82.6129 139.464 74.5509L102.042 111.973ZM52.1395 144.796C63.3918 134.345 74.5298 122.841 85.3959 111.921L47.895 74.4209C40.3975 81.8079 17.5077 101.893 15.0981 111.024C13.381 117.531 40.6524 145.249 48.3926 145.231C49.2182 145.229 51.1548 144.982 52.1395 144.796Z" fill="currentColor"/>
+</svg>
+        </span>
+        <span class="doc-rodape-page">Página 1 de 1</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
