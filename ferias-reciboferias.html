@@ -400,6 +400,9 @@
   .doc-rodape-page {
     font-weight: 700;
   }
+  .doc-table tbody tr.total td { background: var(--surfaceMuted); }
+  .doc-table tbody tr.liquido td { background: var(--brandPinkSoft); }
+  .doc-table .secundario { color: var(--textSecondary); font-weight: 500; }
 </style>
 </head>
 <body>
@@ -496,66 +499,52 @@
         </div>
 
         <h2 class="doc-section-title" style="text-align:center;">Períodos</h2>
-        <div class="doc-form-grid">
-          <div class="doc-form-row">
-            <div class="doc-form-cell">
-              <span class="doc-field-label">De Aquisição</span>
-              <span class="doc-field-value">17/08/2025 A 16/08/2026</span>
-            </div>
-            <div class="doc-form-cell" style="flex:2;">
-              <span class="doc-field-label">De Gozo das Férias</span>
-              <span class="doc-field-value">21/09/2026 A 20/10/2026 = 30 Dias</span>
-            </div>
-            <div class="doc-form-cell">
-              <span class="doc-field-label">De Abono</span>
-              <span class="doc-field-value">—</span>
-            </div>
-          </div>
-        </div>
+        <div class="doc-table-wrap"><table class="doc-table">
+          <thead>
+            <tr><th>De Aquisição</th><th>De Gozo das Férias</th><th>De Abono</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>17/08/2025 A 16/08/2026</td><td>21/09/2026 A 20/10/2026 = 30 Dias</td><td>—</td></tr>
+          </tbody>
+        </table></div>
 
         <div style="display:flex;gap:16px;">
           <div style="flex:1;">
             <h2 class="doc-section-title" style="text-align:center;">Base para Cálculo</h2>
-            <div class="doc-form-grid">
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Faltas não justificadas</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">00</span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Salário Base</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">3.400,00</span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Média Horas</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">0,00</span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Média Valores</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">0,00</span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Outras Vantagens</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">0,00</span></div></div>
-              <div class="doc-form-row" style="background:var(--surfaceMuted);">
-                <div class="doc-form-cell" style="flex:2;"><span class="doc-field-value" style="font-weight:800;">TOTAL BASE CÁLCULO</span></div>
-                <div class="doc-form-cell" style="text-align:right;"><span class="doc-field-value" style="font-weight:800;">3.400,00</span></div>
-              </div>
-            </div>
+            <div class="doc-table-wrap"><table class="doc-table">
+            <thead><tr><th>Descrição</th><th style="width:34%;text-align:right;">Valor</th></tr></thead>
+            <tbody>
+              <tr><td>Faltas não justificadas</td><td style="text-align:right;">00</td></tr>
+              <tr><td>Salário Base</td><td style="text-align:right;">3.400,00</td></tr>
+              <tr><td>Média Horas</td><td style="text-align:right;">0,00</td></tr>
+              <tr><td>Média Valores</td><td style="text-align:right;">0,00</td></tr>
+              <tr><td>Outras Vantagens</td><td style="text-align:right;">0,00</td></tr>
+              <tr class="total"><td><strong>TOTAL BASE CÁLCULO</strong></td><td style="text-align:right;"><strong>3.400,00</strong></td></tr>
+            </tbody>
+          </table></div>
           </div>
 
           <div style="flex:1.4;">
             <h2 class="doc-section-title" style="text-align:center;">Proventos e Descontos</h2>
-            <div class="doc-form-grid">
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Férias</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">3.400,00 <span class="secundario" style="color:var(--textSecondary);">P</span></span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">1/3 das Férias</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">1.133,33 <span class="secundario" style="color:var(--textSecondary);">P</span></span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Abono de Férias</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">0,00</span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">1/3 do Abono de Férias</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">0,00</span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Adicional do Dobro das Férias</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">0,00</span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">1/3 do Dobro das Férias</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">0,00</span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Salário Família</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">0,00</span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">1ª Parcela 13º Salário</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">0,00</span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Desconto da Previdência</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">436,16 <span class="secundario" style="color:var(--textSecondary);">D</span></span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Desconto do Imposto de Renda</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">0,00</span></div></div>
-              <div class="doc-form-row"><div class="doc-form-cell" style="flex:2;"><span class="doc-field-value">Provisão Desc. Emp. Créd. Trab.</span></div><div class="doc-form-cell" style="flex:1;text-align:right;"><span class="doc-field-value">756,67 <span class="secundario" style="color:var(--textSecondary);">D</span></span></div></div>
-              <div class="doc-form-row" style="background:var(--surfaceMuted);">
-                <div class="doc-form-cell" style="flex:2;"><span class="doc-field-value" style="font-weight:800;">TOTAL DOS PROVENTOS</span></div>
-                <div class="doc-form-cell" style="text-align:right;"><span class="doc-field-value" style="font-weight:800;">4.533,33 P</span></div>
-              </div>
-              <div class="doc-form-row" style="background:var(--surfaceMuted);">
-                <div class="doc-form-cell" style="flex:2;"><span class="doc-field-value" style="font-weight:800;">TOTAL DOS DESCONTOS</span></div>
-                <div class="doc-form-cell" style="text-align:right;"><span class="doc-field-value" style="font-weight:800;">1.192,83 D</span></div>
-              </div>
-              <div class="doc-form-row" style="background:var(--brandPinkSoft);">
-                <div class="doc-form-cell" style="flex:2;"><span class="doc-field-value" style="font-weight:800;">TOTAL LÍQUIDO</span></div>
-                <div class="doc-form-cell" style="text-align:right;"><span class="doc-field-value" style="font-weight:800;">3.340,50 P</span></div>
-              </div>
-            </div>
+            <div class="doc-table-wrap"><table class="doc-table">
+            <thead><tr><th>Descrição</th><th style="width:34%;text-align:right;">Valor</th></tr></thead>
+            <tbody>
+              <tr><td>Férias</td><td style="text-align:right;">3.400,00 <span class="secundario">P</span></td></tr>
+              <tr><td>1/3 das Férias</td><td style="text-align:right;">1.133,33 <span class="secundario">P</span></td></tr>
+              <tr><td>Abono de Férias</td><td style="text-align:right;">0,00</td></tr>
+              <tr><td>1/3 do Abono de Férias</td><td style="text-align:right;">0,00</td></tr>
+              <tr><td>Adicional do Dobro das Férias</td><td style="text-align:right;">0,00</td></tr>
+              <tr><td>1/3 do Dobro das Férias</td><td style="text-align:right;">0,00</td></tr>
+              <tr><td>Salário Família</td><td style="text-align:right;">0,00</td></tr>
+              <tr><td>1ª Parcela 13º Salário</td><td style="text-align:right;">0,00</td></tr>
+              <tr><td>Desconto da Previdência</td><td style="text-align:right;">436,16 <span class="secundario">D</span></td></tr>
+              <tr><td>Desconto do Imposto de Renda</td><td style="text-align:right;">0,00</td></tr>
+              <tr><td>Provisão Desc. Emp. Créd. Trab.</td><td style="text-align:right;">756,67 <span class="secundario">D</span></td></tr>
+              <tr class="total"><td><strong>TOTAL DOS PROVENTOS</strong></td><td style="text-align:right;"><strong>4.533,33 P</strong></td></tr>
+              <tr class="total"><td><strong>TOTAL DOS DESCONTOS</strong></td><td style="text-align:right;"><strong>1.192,83 D</strong></td></tr>
+              <tr class="liquido"><td><strong>TOTAL LÍQUIDO</strong></td><td style="text-align:right;"><strong>3.340,50 P</strong></td></tr>
+            </tbody>
+          </table></div>
           </div>
         </div>
 

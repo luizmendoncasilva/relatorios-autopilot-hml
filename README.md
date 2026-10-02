@@ -20,6 +20,9 @@ razao.html                 → Livro Razão
 difal.html                 → Demonstrativo do Diferencial de Alíquota (DIFAL)
 retencoes_a_recolher.html  → Retenções a Recolher
 faturamento_v3.html        → Memória de Cálculo do Simples Nacional
+livro_icms.html            → Livro Fiscal – Registro de Apuração do ICMS (FIS-1144)
+livro_entradas.html        → Livro Fiscal – Registro de Entradas (FIS-1143)
+livro_saidas.html          → Livro Fiscal – Registro de Saídas (FIS-1141)
 holerite.html              → Holerite / Recibo de Pagamento
 extrato_mensal.html        → Extrato Mensal da folha
 relacao_de_liquidos.html   → Relação Geral dos Líquidos
@@ -32,7 +35,7 @@ Cada relatório é uma página independente — sem framework, sem dependências
 Todos os documentos seguem o mesmo padrão, documentado em detalhe no [style guide](bhub_style_guide.html):
 
 - **Topbar fixa** (fundo escuro `#0f1726`) com botão "Voltar" para o índice e a logo BHub.
-- **Logo da empresa**: quando a empresa cliente tem uma logo cadastrada, ela aparece ao lado da logo BHub no cabeçalho do documento, separadas por uma régua vertical. Sem logo cadastrada, exibe-se só a BHub.
+- **Logo do cabeçalho**: apenas a logo CONTJET, sem a logo BHub ao lado. A BHub aparece só na topbar e no rodapé ("powered by").
 - **Paleta única**: rosa (`#f25461`) para agrupamentos e acentos, azul (`#0171e4`) para totais e destaques fiscais, tons neutros de cinza para texto e bordas.
 - **Tipografia**: Nunito Sans em 4 pesos (500 / 700 / 800 / 900) — nada fora dessa escala.
 - **Cabeçalho e rodapé de documento**: padrão fixo com Empresa/CNPJ/Período de um lado e Código de Acesso/Emissão do outro no cabeçalho; logo BHub + "powered by" e número de página no rodapé.
