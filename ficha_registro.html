@@ -2,404 +2,105 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Acordo de Prorrogação de Horas</title>
+<title>Ficha de Registro</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@500;700;800;900&display=swap">
 <style>
-  * { box-sizing: border-box; }
-  body { margin: 0; background: #ebebed; font-family: 'Nunito Sans', sans-serif; }
+  :root{
+    --brandPink:#f25461; --brandPinkSoft:#fde7ea; --brandBlue:#0171e4; --brandBlueSoftBg:rgba(1,113,228,.08);
+    --textPrimary:#18181b; --textSecondary:#52525b;
+    --border:#e4e4e7; --borderStrong:#d4d4d8; --surface:#ffffff; --surfaceMuted:#f7f7f8;
+    --danger:#dc2626;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#f0f0f2;font-family:'Nunito Sans',sans-serif;padding:28px 20px;}
+  .page{width:794px;min-height:1123px;margin:0 auto 28px;background:var(--surface);border-radius:10px;box-shadow:0 2px 16px rgba(0,0,0,.09);overflow:hidden;display:flex;flex-direction:column;}
+  .page.land{width:1123px;min-height:794px;}
 
-  .bh-topbar{position:sticky;top:0;z-index:50;background:#0f1726;padding:14px 28px;display:flex;align-items:center;gap:16px;font-family:'Nunito Sans',sans-serif;}
+  .cab{background:#fff;border-bottom:2px solid var(--borderStrong);padding:16px 24px 12px;}
+  .cabTop{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+  .cabLogo{display:flex;align-items:center;gap:10px;}
+  .cabTitulo{font-size:15px;font-weight:800;color:var(--textPrimary);text-align:right;text-transform:uppercase;}
+  .cabDivider{border-top:1px solid var(--border);margin-bottom:10px;}
+  .metaGrid{display:grid;grid-template-columns:1fr 1fr;gap:3px 24px;font-size:10px;}
+  .metaGrid span{color:var(--textSecondary);font-weight:500;}
+  .metaGrid strong{color:var(--textPrimary);font-weight:700;}
+  .metaGrid .cnpj{margin-top:2px;font-size:9px;}
+  .right{text-align:right;}
+
+  .body{padding:8px 24px;display:flex;flex-direction:column;gap:8px;flex:1;}
+
+  .card{border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+  .cardHead{background:var(--brandPink);padding:7px 12px;}
+  .cardHead .tit{display:block;line-height:1.3;font-size:9px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.05em;}
+  .miniGrid{background:var(--surface);padding:6px 14px;display:grid;grid-template-columns:repeat(6,1fr);gap:4px 12px;}
+  .miniGrid.c1{grid-template-columns:1fr;} .miniGrid.c2{grid-template-columns:1fr 1fr;}
+  .miniGrid .s2{grid-column:span 2;} .miniGrid .s3{grid-column:span 3;} .miniGrid .s4{grid-column:span 4;} .miniGrid .s5{grid-column:span 5;} .miniGrid .s6{grid-column:span 6;}
+  .miniGrid .l{font-size:9px;line-height:1.2;color:var(--textSecondary);font-weight:500;}
+  .miniGrid .v{font-size:10px;line-height:1.25;font-weight:700;color:var(--textPrimary);margin-top:1px;}
+  .miniGrid .v.nil{color:var(--textSecondary);font-weight:500;}
+  .miniGrid .v{white-space:nowrap;} .miniGrid .s3 .v, .miniGrid .s6 .v{white-space:normal;}
+  .split2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .split3{display:grid;grid-template-columns:1.2fr 1fr 1.4fr;gap:8px;}
+  .lines{min-height:22px;margin:4px 14px 6px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 21px,var(--borderStrong) 21px,var(--borderStrong) 22px);}
+
+  table{width:100%;border-collapse:collapse;font-size:9px;}
+  thead th{padding:4px 8px;background:var(--brandPink);font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#fff;text-align:left;}
+  thead th.right{text-align:right;}
+  tbody td{padding:4px 8px;border-bottom:1px solid var(--border);}
+  tr.zebra1 td{background:var(--surface);}
+  tr.zebra2 td{background:var(--surfaceMuted);}
+  .sec{color:var(--textSecondary);font-weight:500;}
+  .prim{color:var(--textPrimary);font-weight:500;}
+  .prim700{color:var(--textPrimary);font-weight:700;}
+  .provento{color:#2748B2;font-weight:700;white-space:nowrap;}
+  .desconto{color:var(--danger);font-weight:700;white-space:nowrap;}
+  .vazio{color:var(--textSecondary);font-weight:500;white-space:nowrap;}
+  .informativo{color:var(--textSecondary);font-weight:700;font-style:italic;white-space:nowrap;}
+
+  .assinatura{margin-top:2px;padding-top:8px;border-top:1px dashed var(--borderStrong);font-size:10px;color:var(--textSecondary);}
+  .assinaturaRow{display:flex;justify-content:space-between;align-items:flex-end;}
+  .dataField{font-weight:700;color:var(--textPrimary);}
+  .assinaturaLinha{text-align:center;}
+  .linha{width:300px;border-bottom:1px solid var(--textPrimary);margin-bottom:6px;margin-top:14px;}
+  .assinaturaLabel{font-weight:500;color:var(--textSecondary);}
+
+  /* Ficha Financeira */
+  .legenda{display:flex;flex-wrap:wrap;gap:4px 16px;background:var(--surfaceMuted);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:8px;color:var(--textSecondary);}
+  .legenda strong{color:var(--textPrimary);font-weight:800;}
+  .colabCard{display:flex;flex-direction:column;gap:5px;}
+  .colabTopWrap{border-radius:8px 8px 0 0;overflow:hidden;border:1px solid var(--border);border-bottom:none;}
+  .colabHeader{background:var(--brandPink);padding:5px 10px;display:flex;align-items:center;}
+  .colabNome{font-size:10px;font-weight:700;color:#fff;}
+  .colabSit{font-size:9px;color:rgba(255,255,255,.85);margin-left:8px;font-weight:500;}
+  .colabMeta{background:var(--surfaceMuted);padding:5px 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:2px 12px;font-size:9px;}
+  .colabMeta .metaL{color:var(--textSecondary);font-weight:500;}
+  .colabMeta strong{color:var(--textPrimary);font-weight:700;}
+  .colabTableWrap{border-radius:0 0 8px 8px;overflow:hidden;border:1px solid var(--border);margin-bottom:0;}
+  table.fin{table-layout:fixed;}
+  table.fin thead th{padding:5px 5px;}
+  table.fin tbody td{padding:4px 5px;}
+  table.fin td.num{text-align:right;}
+  table.fin td.totcol{font-weight:800;}
+  tr.grupo td{background:var(--brandPinkSoft);border-bottom:2px solid var(--brandPink);padding:5px 8px;font-weight:800;font-size:10px;color:var(--textPrimary);}
+  tr.subtotal td{background:var(--brandBlueSoftBg);border-bottom:1px solid var(--border);border-top:1.5px solid var(--brandBlue);padding:5px 5px;}
+  .subtotalLabel{font-weight:800;color:var(--brandBlue);text-transform:uppercase;letter-spacing:.03em;font-size:9px;}
+  .subtotalValor{font-weight:800;color:var(--brandBlue);text-align:right;}
+  tr.totalGeral td{background:var(--surface);border-top:2px solid var(--borderStrong);padding:8px 5px;font-size:10px;font-weight:900;color:var(--textPrimary);border-bottom:none;}
+  .miniGrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
+  .miniTotal{border:1px solid var(--border);border-radius:6px;padding:4px 8px;background:var(--surfaceMuted);}
+  .miniTotal .l{font-size:8px;color:var(--textSecondary);text-transform:uppercase;font-weight:500;}
+  .miniTotal .v{font-size:11px;font-weight:800;color:var(--textPrimary);white-space:nowrap;}
+
+  .rodape{border-top:1px solid var(--border);padding:8px 24px;display:flex;justify-content:space-between;align-items:center;font-size:9px;color:var(--textSecondary);font-weight:500;}
+  .rodape .brand{display:flex;align-items:center;gap:4px;}
+  .rodape .pag{font-weight:700;}
+
+  .bh-topbar{position:sticky;top:0;z-index:50;background:#0f1726;padding:14px 28px;display:flex;align-items:center;gap:16px;margin:-28px -20px 20px -20px;font-family:'Nunito Sans',sans-serif;}
   .bh-voltar{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;font-family:inherit;font-size:13px;font-weight:800;padding:8px 14px;border-radius:8px;cursor:pointer;text-decoration:none;transition:background .15s;}
   .bh-voltar:hover{background:rgba(255,255,255,.16);}
   .bh-voltar svg{flex-shrink:0;}
   .bh-topbar-brand{display:flex;align-items:center;gap:9px;margin-left:4px;}
-  .bh-topbar-title{font-size:14px;font-weight:900;color:#fff;letter-spacing:-.02em;}
   .bh-topbar-sub{font-size:10px;font-weight:700;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.06em;}
-  .bh-disclaimer{max-width:794px;margin:16px auto;padding:9px 16px;background:#f7f7f8;border:1px solid #e4e4e7;border-radius:8px;font-family:'Nunito Sans',sans-serif;font-size:10.5px;font-weight:500;color:#71717a;text-align:center;line-height:1.5;}
-
-  /* ==========================================================================
-     Design tokens e classes compartilhadas por todos os documentos "doc-*".
-     Baseado no modelo do "Relatório dos Arquivos Validados" (BHub).
-     ========================================================================== */
-
-  :root {
-    --brandPink: #f25461;
-    --brandPinkSoft: #fde7ea;
-    --brandBlue: #0171e4;
-    --textPrimary: #18181b;
-    --textSecondary: #52525b;
-    --border: #e4e4e7;
-    --borderStrong: #d4d4d8;
-    --surface: #ffffff;
-    --surfaceMuted: #f7f7f8;
-    --pageBg: #ebebed;
-  }
-
-  .doc-root {
-    margin: 0;
-    background: var(--pageBg);
-    font-family: 'Nunito Sans', sans-serif;
-  }
-
-  .doc-pages {
-    padding: 0 0 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* ---------- Página A4 ---------- */
-
-  .doc-page {
-    width: 794px;
-    height: 1123px;
-    background: var(--surface);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  /* ---------- Cabeçalho ---------- */
-
-  .doc-cabecalho {
-    height: 88px;
-    flex: 0 0 88px;
-    border-bottom: 2px solid var(--borderStrong);
-    padding: 12px 24px 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .doc-cabecalho-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .doc-cabecalho-brand {
-    display: flex;
-    align-items: center;
-  }
-
-  .doc-cabecalho-brand svg {
-    flex-shrink: 0;
-  }
-
-  .doc-cabecalho-titulo {
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--textPrimary);
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    text-align: right;
-  }
-
-  .doc-cabecalho-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 2px;
-    column-gap: 24px;
-    font-size: 10px;
-  }
-
-  .doc-cabecalho-grid .label {
-    font-weight: 500;
-    color: var(--textSecondary);
-  }
-
-  .doc-cabecalho-grid .value {
-    font-weight: 700;
-    color: var(--textPrimary);
-  }
-
-  .doc-cabecalho-col-right {
-    text-align: right;
-  }
-
-  /* ---------- Conteúdo ---------- */
-
-  .doc-conteudo {
-    flex: 1 1 auto;
-    padding: 24px 32px 0;
-    overflow: hidden;
-    font-size: 11px;
-    color: var(--textPrimary);
-    line-height: 1.5;
-  }
-
-  .doc-titulo-principal {
-    font-size: 13px;
-    font-weight: 800;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    margin: 0 0 18px;
-    color: var(--textPrimary);
-  }
-
-  .doc-subtitulo {
-    font-size: 10px;
-    font-weight: 700;
-    text-align: center;
-    color: var(--textSecondary);
-    margin: -14px 0 18px;
-  }
-
-  .doc-paragraph {
-    margin: 0 0 10px;
-    font-weight: 500;
-    color: var(--textPrimary);
-  }
-
-  .doc-paragraph strong {
-    font-weight: 800;
-  }
-
-  .doc-section-title {
-    font-size: 10.5px;
-    font-weight: 800;
-    color: var(--brandPink);
-    text-transform: uppercase;
-    letter-spacing: 0.2px;
-    margin: 16px 0 4px;
-  }
-
-  .doc-section-subtitle {
-    font-size: 10.5px;
-    font-weight: 700;
-    color: var(--textPrimary);
-    margin: 0 0 6px;
-  }
-
-  .doc-list {
-    margin: 0 0 10px;
-    padding-left: 0;
-    list-style: none;
-  }
-
-  .doc-list li {
-    position: relative;
-    padding-left: 12px;
-    margin-bottom: 4px;
-    font-weight: 500;
-  }
-
-  .doc-list li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--textSecondary);
-  }
-
-  .doc-list.doc-list-numbered li::before {
-    content: none;
-  }
-
-  /* ---------- Linha de campo (label: valor) ---------- */
-
-  .doc-field-row {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 6px;
-    font-weight: 500;
-  }
-
-  .doc-field-row .doc-field-label {
-    color: var(--textSecondary);
-    font-weight: 700;
-    white-space: nowrap;
-  }
-
-  .doc-field-row .doc-field-value {
-    color: var(--textPrimary);
-    font-weight: 700;
-  }
-
-  /* ---------- Checkbox de opção ---------- */
-
-  .doc-checkbox-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 6px;
-    font-weight: 700;
-  }
-
-  .doc-checkbox-box {
-    width: 12px;
-    height: 12px;
-    border: 1.5px solid var(--textPrimary);
-    border-radius: 2px;
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 8px;
-  }
-
-  /* ---------- Assinaturas ---------- */
-
-  .doc-signature-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    margin-top: 36px;
-  }
-
-  .doc-signature-block {
-    flex: 1;
-    text-align: center;
-  }
-
-  .doc-signature-line {
-    border-top: 1px solid var(--textPrimary);
-    margin-bottom: 6px;
-  }
-
-  .doc-signature-name {
-    font-weight: 800;
-    font-size: 10.5px;
-  }
-
-  .doc-signature-caption {
-    font-weight: 500;
-    color: var(--textSecondary);
-    font-size: 9.5px;
-  }
-
-  /* ---------- Tabela simples (horários, valores) ---------- */
-
-  .doc-table-wrap {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 10px 0 16px;
-  }
-
-  .doc-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0;
-  }
-
-  .doc-table thead tr {
-    background: var(--brandPink);
-    height: 24px;
-  }
-
-  .doc-table thead th {
-    font-size: 9px;
-    font-weight: 800;
-    color: #fff;
-    text-transform: uppercase;
-    text-align: left;
-    padding: 0 8px;
-    letter-spacing: 0.2px;
-  }
-
-  .doc-table tbody tr {
-    height: 22px;
-  }
-
-  .doc-table tbody tr:nth-child(even) {
-    background: var(--surfaceMuted);
-  }
-
-  .doc-table tbody td {
-    font-size: 10.5px;
-    font-weight: 700;
-    padding: 0 8px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .doc-table tbody td.secundario {
-    color: var(--textSecondary);
-    font-weight: 500;
-  }
-
-  /* ---------- Grade de formulário (Ficha de Registro, Vale-Transporte) ---------- */
-
-  .doc-form-grid {
-    border: 1px solid var(--borderStrong);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 12px;
-  }
-
-  .doc-form-row {
-    display: flex;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .doc-form-row:last-child {
-    border-bottom: none;
-  }
-
-  .doc-form-cell {
-    flex: 1;
-    padding: 5px 8px;
-    border-right: 1px solid var(--border);
-  }
-
-  .doc-form-cell:last-child {
-    border-right: none;
-  }
-
-  .doc-form-cell .doc-field-label {
-    display: block;
-    font-size: 8.5px;
-    color: var(--textSecondary);
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 1px;
-  }
-
-  .doc-form-cell .doc-field-value {
-    font-size: 10.5px;
-  }
-
-  .doc-form-header {
-    background: var(--brandPink);
-    padding: 7px 10px;
-    font-size: 9px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #fff;
-  }
-
-  /* ---------- Rodapé ---------- */
-
-  .doc-rodape {
-    height: 40px;
-    flex: 0 0 40px;
-    border-top: 1px solid var(--border);
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 9px;
-    font-weight: 500;
-    color: var(--textSecondary);
-  }
-
-  .doc-rodape-logo {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .doc-rodape-logo svg {
-    flex-shrink: 0;
-    vertical-align: middle;
-  }
-
-  .doc-rodape-page {
-    font-weight: 700;
-  }
 </style>
 </head>
 <body>
@@ -417,18 +118,17 @@
 <path d="M539 49.6829H572.071C572.034 62.5809 570.867 116.957 573.366 127.081C574.96 133.689 578.301 139.748 583.039 144.622C602.444 164.215 639.952 153.237 643.635 127.09C646.826 104.439 645.087 73.1939 645 49.6829H678.071V101.015V187.586H645V168.096C623.449 198.102 583.586 190.679 559.626 167.612C537.589 146.396 538.866 121.242 538.896 93.1839L539 49.6829Z" fill="currentColor"/>
 <path d="M0 16.2679C2.51395 10.2149 5.38004 4.70588 11.7954 1.98588C17.4184 -0.398123 169.426 -0.83912 175.662 1.78688C179.626 3.45488 184.447 7.06888 186.062 11.1819C187.556 14.9899 187.898 19.9629 188.088 24.0179C189.474 53.6259 188.262 83.8769 188.224 113.548C188.199 133.685 189.795 155.209 187.805 175.161C185.122 179.652 179.614 187.639 173.819 187.843C122.643 189.645 71.0166 188.431 19.7489 188.336C8.46048 188.315 3.65794 182.337 0 172.513V16.2679ZM94 103.525L131.403 66.1219C122.984 57.5609 102.795 34.4419 93.1391 32.4209C85.3881 34.9439 63.1712 59.2639 56.5 66.0249L94 103.525ZM102.042 111.973C107.564 117.551 131.942 142.819 136.976 145.729C145.418 145.427 149.808 140.053 155.401 133.681C160.451 127.927 171.643 119.595 172.966 113.441C171.862 103.418 147.723 82.6129 139.464 74.5509L102.042 111.973ZM52.1395 144.796C63.3918 134.345 74.5298 122.841 85.3959 111.921L47.895 74.4209C40.3975 81.8079 17.5077 101.893 15.0981 111.024C13.381 117.531 40.6524 145.249 48.3926 145.231C49.2182 145.229 51.1548 144.982 52.1395 144.796Z" fill="currentColor"/>
 </svg>
-    <div class="bh-topbar-sub">Motor DP · Acordo de Prorrogação de Horas</div>
+    <div class="bh-topbar-sub">Motor DP · Ficha de Registro</div>
   </div>
 </div>
 
-<div class="bh-disclaimer">Os dados apresentados neste documento são apenas para fins visuais de layout, simulando de forma fictícia as informações para melhor visualização do mesmo.</div>
+<div class="bh-disclaimer" style="max-width:794px;margin:0 auto 16px;padding:9px 16px;background:#f7f7f8;border:1px solid #e4e4e7;border-radius:8px;font-family:'Nunito Sans',sans-serif;font-size:10.5px;font-weight:500;color:#71717a;text-align:center;line-height:1.5;">Os dados apresentados neste documento são apenas para fins visuais de layout, simulando de forma fictícia as informações para melhor visualização do mesmo.</div>
 
-<div class="doc-root">
-  <div class="doc-pages">
-    <div class="doc-page">
-      <div class="doc-cabecalho">
-        <div class="doc-cabecalho-top">
-          <div class="doc-cabecalho-brand">
+<div class="page">
+  <div class="cab">
+    <div class="cabTop">
+      <div class="cabLogo">
+        <div>
 <svg width="92" height="28.1" viewBox="1088 33 1056 322" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#18181b;flex-shrink:0;">
 <path d="M1339.34 36.4545C1389.87 33.1576 1433.53 71.4036 1436.92 121.934C1440.31 172.464 1402.14 216.193 1351.61 219.669C1300.96 223.152 1257.1 184.867 1253.71 134.211C1250.31 83.5546 1288.67 39.7597 1339.34 36.4545ZM1355.85 173.776C1382.95 166.665 1394.5 140.19 1387.49 114.159C1384.27 102.492 1376.58 92.5663 1366.08 86.5329C1356.09 80.8489 1346.8 80.8596 1335.64 82.1858C1308 90.4248 1294.94 115.33 1303.28 142.92C1306.67 154.491 1314.57 164.212 1325.21 169.894C1335.54 175.364 1344.62 175.679 1355.85 173.776Z" fill="currentColor"/>
 <path d="M1455.17 41.9284H1499.56C1520.09 68.3914 1540.94 98.4765 1560.31 126.031C1561.86 99.1216 1560.76 69.5329 1561.89 41.9284H1608.7C1608.7 58.0209 1609.42 210.501 1607.78 213.302H1565.72C1553.92 201.718 1552.52 194.351 1543.59 182.117C1529.99 163.507 1516.55 144.976 1503.19 126.183C1502.95 155.225 1502.54 184.265 1501.97 213.302H1455.17V41.9284Z" fill="currentColor"/>
@@ -462,103 +162,47 @@
 <path d="M1457.93 286.072C1460.92 285.936 1464.32 285.535 1467.05 286.665C1468.81 288.721 1468.28 292.24 1468.19 295.072C1465.06 295.207 1462.24 295.494 1459.21 294.6C1457.32 291.731 1457.96 289.922 1457.93 286.072Z" fill="currentColor"/>
 <path d="M2011.61 41.915C2054.59 40.9791 2100.86 41.8607 2144 41.9284V84.8325H2102.51V213.302H2054.49V84.8325H2011.6C2010.9 73.2044 2011.14 53.4508 2011.61 41.915Z" fill="currentColor"/>
 </svg>
-          </div>
-          <div class="doc-cabecalho-titulo">Acordo de Prorrogação de Horas</div>
-        </div>
-        <div class="doc-cabecalho-grid">
-          <span><span class="label">Empresa: </span><span class="value">RV ARAUJO LTDA</span></span>
-          <span class="doc-cabecalho-col-right"><span class="label">CNPJ: </span><span class="value">20.352.796/0001-59</span></span>
-          <span><span class="label">Empregado: </span><span class="value">ARISTEU JOSE CARDOSO JUNIOR</span></span>
-          <span class="doc-cabecalho-col-right"><span class="label">CTPS/Série: </span><span class="value">2197077/5890/SP</span></span>
         </div>
       </div>
-
-      <div class="doc-conteudo">
-        <h1 class="doc-titulo-principal">Acordo de Prorrogação de Horas</h1>
-
-        <p class="doc-paragraph">
-          Pelo presente acordo para compensação de horas de trabalho, firmado entre a empresa
-          <strong>RV ARAUJO LTDA</strong>, com estabelecimento em R SERRA DA BORBOREMA No: 230, Bairro: CAMPANARIO, Cidade: DIADEMA, UF: SP, inscrita no
-          CNPJ (MF)/CEI sob o nº <strong>20.352.796/0001-59</strong>, neste ato representada pelo(a)
-          <strong>NIVALDO NEVES DE ARAUJO</strong>, e seu(sua) empregado(a)
-          <strong>ARISTEU JOSE CARDOSO JUNIOR</strong>, portador(a) da Carteira de Trabalho e Previdência
-          Social nº/série
-          <strong>2197077/5890/SP</strong>, fica acertado este acordo de Prorrogação da Jornada de Trabalho, que se regerá pelas
-          cláusulas abaixo:
-        </p>
-
-        <ol class="doc-list doc-list-numbered" style="padding-left:16px;">
-          <li>
-            A duração do trabalho diário poderá ser prorrogada por 2 horas, sendo
-            consideradas extraordinárias e pagas com o acréscimo abaixo as horas que ultrapassarem
-            o horário normal de trabalho.
-          </li>
-          <li>
-            A remuneração de trabalho será a seguinte:
-            As horas extraordinárias serão remuneradas com adicional mínimo de
-            50%, ou percentual superior se previsto em Convenção Coletiva da
-            categoria.
-          </li>
-          <li>O horário de trabalho durante a vigência deste contrato será acrescido de 2 horas.</li>
-          <li>
-            As horas extras serão feitas de acordo com as necessidades da empresa, conferindo
-            assim com o cartão de ponto, ponto eletrônico ou livro de ponto, conforme o artigo 59
-            da CLT.
-          </li>
-          <li>
-            Comprovada a conveniência para isso, fica facultado a qualquer das partes rescindir
-            unilateralmente este acordo, mediante aviso escrito, a partir do qual ficará cancelada
-            a prorrogação de horário.
-          </li>
-        </ol>
-
-        <p class="doc-paragraph">Este acordo vigorará pelo prazo indeterminado.</p>
-        <p class="doc-paragraph">
-          E, por estarem de pleno acordo, as partes contratantes assinam o presente em 2 (duas)
-          vias.
-        </p>
-
-        <p class="doc-paragraph" style="margin-top:24px;">
-          DIADEMA, 10 de Setembro de 2026.
-        </p>
-
-        <div class="doc-signature-row" style="margin-top:70px;">
-          <div class="doc-signature-block">
-            <div class="doc-signature-line"></div>
-            <div class="doc-signature-name">ARISTEU JOSE CARDOSO JUNIOR</div>
-          </div>
-          <div class="doc-signature-block">
-            <div class="doc-signature-line"></div>
-            <div class="doc-signature-name">RV ARAUJO LTDA</div>
-          </div>
-        </div>
-        <div class="doc-signature-row" style="margin-top:56px;">
-          <div class="doc-signature-block">
-            <div class="doc-signature-line"></div>
-            <div class="doc-signature-caption">Testemunha</div>
-          </div>
-          <div class="doc-signature-block">
-            <div class="doc-signature-line"></div>
-            <div class="doc-signature-caption">Testemunha</div>
-          </div>
-        </div>
+      <div class="cabTitulo">Ficha de Registro</div>
+    </div>
+    <div class="cabDivider"></div>
+    <div class="metaGrid">
+      <div>
+        <span>Empresa: <strong>EMPRESA MODELO S.A.</strong></span>
+        <div class="cnpj">CNPJ: <strong>12.345.678/0001-90</strong></div>
       </div>
-
-      <div class="doc-rodape">
-        <span class="doc-rodape-logo">
-          powered by <svg width="48.8" height="11" viewBox="0 0 838 189" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#18181b;flex-shrink:0;vertical-align:middle;">
+      <span class="right">Matrícula eSocial: <strong>42</strong></span>
+      <span>Emissão: <strong>02/10/2026 09:15:42</strong></span>
+      <span class="right">Registro Nº: <strong>000001</strong></span>
+    </div>
+  </div>
+  <div class="body">
+    <div class="card"><div class="cardHead"><span class="tit">Empregador e empregado</span></div><div class="miniGrid "><div class="s3"><div class="l">Empresa</div><div class="v">EMPRESA MODELO S.A.</div></div><div class="s2"><div class="l">CNPJ</div><div class="v">12.345.678/0001-90</div></div><div class=""><div class="l">Matrícula eSocial</div><div class="v">42</div></div><div class="s6"><div class="l">Endereço</div><div class="v">Rua Exemplo, 1000, Sala 12, Centro, São Paulo, SP</div></div></div><div class="miniGrid" style="padding-top:0;"><div class="s3"><div class="l">Nome</div><div class="v">FERNANDA COSTA ALVES</div></div><div class="s3"><div class="l">Beneficiários</div><div class="v nil">—</div></div><div class="s6"><div class="l">Residência</div><div class="v">Rua das Flores, 123, Apto 45, Jardim Modelo, São Paulo, SP — CEP 01000-000</div></div></div></div>
+    <div class="card"><div class="cardHead"><span class="tit">Dados pessoais</span></div><div class="miniGrid "><div class=""><div class="l">Data de nascimento</div><div class="v">22/07/1992</div></div><div class="s2"><div class="l">Local do nascimento</div><div class="v">SAO PAULO - SP</div></div><div class=""><div class="l">País da nacionalidade</div><div class="v">BRASIL</div></div><div class=""><div class="l">Estado civil</div><div class="v">Solteira</div></div><div class=""><div class="l">Cor</div><div class="v">Branca</div></div><div class=""><div class="l">Sexo</div><div class="v">Feminino</div></div><div class="s2"><div class="l">Grau de instrução</div><div class="v">Superior Completo</div></div><div class=""><div class="l">Deficiência</div><div class="v">Não</div></div><div class=""><div class="l">Telefone residencial</div><div class="v nil">—</div></div><div class=""><div class="l">Telefone celular</div><div class="v">11-90000-0000</div></div><div class="s3"><div class="l">Filiação — Pai</div><div class="v">CARLOS EDUARDO ALVES</div></div><div class="s3"><div class="l">Filiação — Mãe</div><div class="v">MARIA HELENA COSTA ALVES</div></div></div></div>
+    <div class="card"><div class="cardHead"><span class="tit">Documentos</span></div><div class="miniGrid "><div class=""><div class="l">Cédula de identidade</div><div class="v">12.345.678-9</div></div><div class=""><div class="l">Data de emissão</div><div class="v">10/03/2015</div></div><div class=""><div class="l">Órgão/UF emissor</div><div class="v">SSP/SP</div></div><div class=""><div class="l">Título eleitoral</div><div class="v">1234 5678 9012</div></div><div class=""><div class="l">Zona</div><div class="v">001</div></div><div class=""><div class="l">Seção</div><div class="v">0001</div></div><div class=""><div class="l">CTPS</div><div class="v">0123456</div></div><div class=""><div class="l">Série</div><div class="v">0001</div></div><div class="s2"><div class="l">Data de expedição da CTPS</div><div class="v">05/02/2014</div></div><div class=""><div class="l">UF CTPS</div><div class="v">SP</div></div><div class=""><div class="l">CPF</div><div class="v">654.987.321-00</div></div><div class="s2"><div class="l">Cart. Nac. Habilitação</div><div class="v nil">—</div></div><div class=""><div class="l">Categoria (CNH)</div><div class="v nil">—</div></div><div class=""><div class="l">Doc. militar</div><div class="v nil">—</div></div><div class=""><div class="l">Categoria (militar)</div><div class="v nil">—</div></div><div class=""><div class="l">Inscr. órgão de classe</div><div class="v nil">—</div></div></div></div>
+    <div class="card"><div class="cardHead"><span class="tit">Contrato de trabalho</span></div><div class="miniGrid "><div class=""><div class="l">Data de admissão</div><div class="v">15/03/2021</div></div><div class="s2"><div class="l">Cargo</div><div class="v">ANALISTA FINANCEIRO</div></div><div class=""><div class="l">C.B.O.</div><div class="v">2522-05</div></div><div class="s2"><div class="l">Função</div><div class="v nil">—</div></div><div class="s2"><div class="l">Salário inicial</div><div class="v">R$ 3.200,00 por mês</div></div><div class="s2"><div class="l">Horário de trabalho</div><div class="v">das 09:00 às 18:00</div></div><div class="s2"><div class="l">Horário de intervalo</div><div class="v">das 12:00 às 13:00</div></div><div class=""><div class="l">FGTS — opção em</div><div class="v">15/03/2021</div></div><div class="s3"><div class="l">Conta vinculada no banco</div><div class="v nil">—</div></div><div class="s2"><div class="l">Data da retificação</div><div class="v nil">—</div></div></div></div>
+    <div class="card"><div class="cardHead"><span class="tit">PIS e domicílio bancário</span></div><div class="miniGrid "><div class=""><div class="l">PIS — sob nº</div><div class="v">123.45678.90-1</div></div><div class=""><div class="l">Cadastrado em</div><div class="v nil">—</div></div><div class="s2"><div class="l">Domicílio bancário</div><div class="v nil">—</div></div><div class=""><div class="l">Nº banco</div><div class="v nil">—</div></div><div class=""><div class="l">Agência/código</div><div class="v nil">—</div></div><div class="s6"><div class="l">Endereço da agência</div><div class="v nil">—</div></div></div></div>
+    <div class="split2"><div class="card"><div class="cardHead"><span class="tit">Alterações de salário, cargo e/ou função</span></div><table><thead><tr><th class="">Vigência</th><th class="">Alteração</th><th class="right">Valor</th></tr></thead><tbody><tr class="zebra1"><td class="sec">01/03/2023</td><td class="prim">Salário por mês</td><td class="right prim700">R$ 3.900,00</td></tr><tr class="zebra2"><td class="sec">01/03/2025</td><td class="prim">Salário por mês</td><td class="right prim700">R$ 4.800,00</td></tr><tr class="zebra1"><td class="sec">01/07/2026</td><td class="prim">Salário por mês</td><td class="right prim700">R$ 5.200,00</td></tr></tbody></table></div><div class="card"><div class="cardHead"><span class="tit">Férias</span></div><table><thead><tr><th class="">Aquisitivo</th><th class="">Gozo</th><th class="">Abono pecuniário</th></tr></thead><tbody><tr class="zebra1"><td class="vazio">—</td><td class="vazio">—</td><td class="vazio">—</td></tr></tbody></table></div></div>
+    <div class="split3"><div class="card"><div class="cardHead"><span class="tit">Acidentes de trabalho / doenças</span></div><div class="miniGrid c1"><div class=""><div class="l">Registros</div><div class="v nil">—</div></div></div></div><div class="card"><div class="cardHead"><span class="tit">Contribuição sindical</span></div><div class="miniGrid c1"><div class=""><div class="l">Registros</div><div class="v nil">—</div></div></div></div><div class="card"><div class="cardHead"><span class="tit">Rescisão de contrato de trabalho</span></div><div class="miniGrid c2"><div class=""><div class="l">Data da saída</div><div class="v nil">—</div></div><div class=""><div class="l">Tipo do desligamento</div><div class="v nil">—</div></div></div></div></div>
+    <div class="card"><div class="cardHead"><span class="tit">Observações (advertências, suspensões, transferências, etc.)</span></div><div class="lines"></div></div>
+    <div class="assinatura"><div class="assinaturaRow">
+      <div class="dataField">Data: ______ / ______ / __________</div>
+      <div class="assinaturaLinha"><div class="linha"></div><div class="assinaturaLabel">FERNANDA COSTA ALVES</div></div>
+    </div></div>
+  </div>
+  <div class="rodape">
+    <span class="brand">
+      powered by <svg width="48.8" height="11" viewBox="0 0 838 189" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#18181b;flex-shrink:0;vertical-align:middle;">
 <path d="M228.928 0.682856C245.158 0.714856 296.449 -0.546141 309.268 1.91286C316.918 3.34486 324.201 6.30286 330.683 10.6089C356.975 28.2319 363.142 63.0908 345.525 89.2208C367.985 110.853 372.102 139.921 354.63 166.122C352.982 168.416 350.982 170.512 348.979 172.502C341.911 179.432 333.086 184.302 323.455 186.586C310.582 189.726 246.872 188.383 228.928 188.347V0.682856ZM315.738 74.5519C319.363 69.6929 323.226 63.2789 322.683 56.9099C320.094 26.5259 283.905 33.8459 262 33.6829V81.4439C278.891 81.5949 303.113 84.8299 315.738 74.5519ZM262 155.347C274.876 155.428 287.757 155.533 300.632 155.615C310.668 155.679 317.443 155.702 325.598 149.207C354.822 106.947 281.918 114.448 262 114.586V155.347Z" fill="currentColor"/>
 <path d="M698 0.682861H731.168L731.218 64.1399C741.407 54.8309 752.903 50.8119 766.698 50.4709C785.349 50.1049 803.387 57.1369 816.87 70.0289C829.78 82.4389 837.225 99.4739 837.563 117.379C837.983 138.332 829.782 154.724 815.549 169.478C814.967 170.024 814.37 170.554 813.76 171.068C787.425 193.266 754.497 196.524 731.167 168.743L731.168 188.347H698V0.682861ZM769.499 155.313C789.733 154.476 805.462 137.402 804.639 117.166C803.815 96.9309 786.751 81.1909 766.515 82.0009C746.26 82.8119 730.502 99.8959 731.326 120.15C732.151 140.404 749.245 156.151 769.499 155.313Z" fill="currentColor"/>
 <path d="M383.072 0.682861H416.302V80.5869H486.49V0.682861H519.832V184.765C519.894 185.428 519.441 186.929 519.259 187.65C514.396 189.189 492.69 188.447 486.49 188.347V113.515H416.302V188.347H383.072V0.682861Z" fill="currentColor"/>
 <path d="M539 49.6829H572.071C572.034 62.5809 570.867 116.957 573.366 127.081C574.96 133.689 578.301 139.748 583.039 144.622C602.444 164.215 639.952 153.237 643.635 127.09C646.826 104.439 645.087 73.1939 645 49.6829H678.071V101.015V187.586H645V168.096C623.449 198.102 583.586 190.679 559.626 167.612C537.589 146.396 538.866 121.242 538.896 93.1839L539 49.6829Z" fill="currentColor"/>
 <path d="M0 16.2679C2.51395 10.2149 5.38004 4.70588 11.7954 1.98588C17.4184 -0.398123 169.426 -0.83912 175.662 1.78688C179.626 3.45488 184.447 7.06888 186.062 11.1819C187.556 14.9899 187.898 19.9629 188.088 24.0179C189.474 53.6259 188.262 83.8769 188.224 113.548C188.199 133.685 189.795 155.209 187.805 175.161C185.122 179.652 179.614 187.639 173.819 187.843C122.643 189.645 71.0166 188.431 19.7489 188.336C8.46048 188.315 3.65794 182.337 0 172.513V16.2679ZM94 103.525L131.403 66.1219C122.984 57.5609 102.795 34.4419 93.1391 32.4209C85.3881 34.9439 63.1712 59.2639 56.5 66.0249L94 103.525ZM102.042 111.973C107.564 117.551 131.942 142.819 136.976 145.729C145.418 145.427 149.808 140.053 155.401 133.681C160.451 127.927 171.643 119.595 172.966 113.441C171.862 103.418 147.723 82.6129 139.464 74.5509L102.042 111.973ZM52.1395 144.796C63.3918 134.345 74.5298 122.841 85.3959 111.921L47.895 74.4209C40.3975 81.8079 17.5077 101.893 15.0981 111.024C13.381 117.531 40.6524 145.249 48.3926 145.231C49.2182 145.229 51.1548 144.982 52.1395 144.796Z" fill="currentColor"/>
 </svg>
-        </span>
-        <span class="doc-rodape-page">Página 1 de 1</span>
-      </div>
-    </div>
+    </span>
+    <span class="pag">Página 1 de 1</span>
   </div>
 </div>
-
 </body>
 </html>

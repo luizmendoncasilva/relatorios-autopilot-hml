@@ -175,6 +175,40 @@
     z-index: 1;
   }
 
+  /* ── Home: categorias ── */
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .cat-card{
+    display:flex;flex-direction:column;gap:18px;text-align:left;
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:24px;color:var(--ink);cursor:pointer;font-family:inherit;
+    position:relative;overflow:hidden;
+    transition:border-color .18s, box-shadow .18s, transform .15s;
+  }
+  .cat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--pink-soft) 0%,transparent 60%);opacity:0;transition:opacity .2s;}
+  .cat-card:hover,.cat-card:focus-visible{border-color:var(--pink-mid);box-shadow:0 4px 20px rgba(242,84,97,0.08),0 1px 4px rgba(0,0,0,0.04);transform:translateY(-2px);outline:none;}
+  .cat-card:hover::before,.cat-card:focus-visible::before{opacity:1;}
+  .cat-icon{width:44px;height:44px;border-radius:10px;background:var(--pink-soft);color:var(--pink);display:flex;align-items:center;justify-content:center;position:relative;z-index:1;}
+  .cat-icon svg{width:22px;height:22px;}
+  .cat-name{font-size:17px;font-weight:900;letter-spacing:-0.01em;line-height:1.25;position:relative;z-index:1;}
+  .cat-desc{font-size:12.5px;font-weight:500;line-height:1.5;color:var(--ink-2);margin-top:-10px;position:relative;z-index:1;}
+  .cat-meta{display:flex;align-items:center;justify-content:space-between;margin-top:auto;position:relative;z-index:1;font-size:12px;font-weight:700;color:var(--ink-2);}
+  .cat-arrow{width:16px;height:16px;color:var(--pink);}
+
+  /* ── Lista de relatórios da categoria ── */
+  .crumb{display:flex;align-items:center;gap:7px;background:none;border:none;font-family:inherit;font-size:13px;font-weight:800;color:var(--ink-2);cursor:pointer;margin-bottom:20px;padding:0;}
+  .crumb:hover{color:var(--pink);}
+  .crumb svg{width:15px;height:15px;}
+  .search{
+    width:100%;max-width:420px;margin-bottom:32px;
+    background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23a1a1aa'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z'/%3E%3C/svg%3E") no-repeat 12px center / 16px;
+    border:1px solid var(--border);border-radius:8px;padding:10px 14px 10px 36px;
+    font-family:inherit;font-size:13px;font-weight:500;color:var(--ink);
+  }
+  .search:focus{outline:none;border-color:var(--pink);}
+  .empty{display:none;font-size:13px;font-weight:500;color:var(--ink-2);}
+  [hidden]{display:none !important;}
+  @media (max-width:760px){.cat-grid{grid-template-columns:1fr;} .page{padding:40px 20px 80px;}}
+
 </style>
 </head>
 <body>
@@ -198,15 +232,45 @@
 
 <div class="page">
 
-  <header class="header">
+  <header class="header" id="home-header">
     <div class="eyebrow">Autopilot · Visão do Operador</div>
     <h1>Relatórios</h1>
   </header>
 
+  <div id="view-home">
+    <div class="cat-grid">
+      <button class="cat-card" type="button" data-go="dp">
+        <div class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" /></svg></div>
+        <div class="cat-name">Relatórios Departamento Pessoal</div>
+        <p class="cat-desc">Folha, férias e documentos de admissão dos colaboradores.</p>
+        <div class="cat-meta"><span data-count="dp"></span><svg class="cat-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg></div>
+      </button>
+      <button class="cat-card" type="button" data-go="fiscal">
+        <div class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185ZM9.75 9h.008v.008H9.75V9Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 4.5h.008v.008h-.008V13.5Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg></div>
+        <div class="cat-name">Relatórios Fiscais</div>
+        <p class="cat-desc">Apuração de impostos, DIFAL, retenções e memória de cálculo do Simples Nacional.</p>
+        <div class="cat-meta"><span data-count="fiscal"></span><svg class="cat-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg></div>
+      </button>
+      <button class="cat-card" type="button" data-go="contabil">
+        <div class="cat-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg></div>
+        <div class="cat-name">Relatórios Contábeis</div>
+        <p class="cat-desc">Razão, balancete, balanço patrimonial e DRE da empresa.</p>
+        <div class="cat-meta"><span data-count="contabil"></span><svg class="cat-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg></div>
+      </button>
+    </div>
+  </div>
+  <div id="view-dp" class="panel" hidden>
+    <button class="crumb" type="button" data-go="home"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>Todas as categorias</button>
+    <header class="header" style="margin-bottom:32px;">
+      <div class="eyebrow">Autopilot · Visão do Operador</div>
+      <h1>Departamento Pessoal</h1>
+    </header>
+    <input class="search" type="search" placeholder="Buscar relatório…" aria-label="Buscar relatório">
+    <p class="empty">Nenhum relatório encontrado.</p>
   <!-- Departamento Pessoal -->
   <div class="section">
     <div class="section-header">
-      <span class="section-label">Departamento Pessoal</span>
+      <span class="section-label">Folha e cadastro</span>
       <div class="section-rule"></div>
     </div>
     <div class="cards">
@@ -227,6 +291,18 @@
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>
         </div>
         <span class="card-name">Extrato mensal</span>
+      </a>
+      <a class="card" href="ficha_registro.html">
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" /></svg>
+        </div>
+        <span class="card-name">Ficha de Registro</span>
+      </a>
+      <a class="card" href="ficha_financeira.html">
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+        </div>
+        <span class="card-name">Ficha Financeira</span>
       </a>
     </div>
 
@@ -322,13 +398,17 @@
       </a>
     </div>
   </div>
-
+  </div>
+  <div id="view-fiscal" class="panel" hidden>
+    <button class="crumb" type="button" data-go="home"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>Todas as categorias</button>
+    <header class="header" style="margin-bottom:32px;">
+      <div class="eyebrow">Autopilot · Visão do Operador</div>
+      <h1>Relatórios Fiscais</h1>
+    </header>
+    <input class="search" type="search" placeholder="Buscar relatório…" aria-label="Buscar relatório">
+    <p class="empty">Nenhum relatório encontrado.</p>
   <!-- Relatórios Fiscais -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-label">Relatórios Fiscais</span>
-      <div class="section-rule"></div>
-    </div>
     <div class="cards">
       <a class="card" href="faturamento_v3.html">
         <div class="card-icon">
@@ -350,13 +430,17 @@
       </a>
     </div>
   </div>
-
+  </div>
+  <div id="view-contabil" class="panel" hidden>
+    <button class="crumb" type="button" data-go="home"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>Todas as categorias</button>
+    <header class="header" style="margin-bottom:32px;">
+      <div class="eyebrow">Autopilot · Visão do Operador</div>
+      <h1>Relatórios Contábeis</h1>
+    </header>
+    <input class="search" type="search" placeholder="Buscar relatório…" aria-label="Buscar relatório">
+    <p class="empty">Nenhum relatório encontrado.</p>
   <!-- Relatórios Contábeis -->
   <div class="section">
-    <div class="section-header">
-      <span class="section-label">Relatórios Contábeis</span>
-      <div class="section-rule"></div>
-    </div>
     <div class="cards">
       <a class="card" href="razao.html">
         <div class="card-icon">
@@ -384,7 +468,47 @@
       </a>
     </div>
   </div>
+  </div>
 
 </div>
+
+<script>
+(function(){
+  var views=['home','dp','fiscal','contabil'];
+  function show(v){
+    if(views.indexOf(v)<0) v='home';
+    views.forEach(function(k){ document.getElementById('view-'+k).hidden = k!==v; });
+    var home=v==='home';
+    document.getElementById('home-header').hidden=!home;
+    document.title=home?'Relatórios · Autopilot':document.querySelector('#view-'+v+' h1').textContent+' · Autopilot';
+    if(!home){ var q=document.querySelector('#view-'+v+' .search'); q.value=''; filter(q); window.scrollTo(0,0); }
+  }
+  function go(v){
+    try{ history.pushState(null,'',v==='home' ? location.pathname : '#'+v); }catch(e){}
+    show(v);
+  }
+  function filter(input){
+    var panel=input.closest('.panel'), term=input.value.trim().toLowerCase(), any=false;
+    panel.querySelectorAll('.card').forEach(function(c){
+      var ok=!term||c.textContent.toLowerCase().indexOf(term)>=0;
+      c.hidden=!ok; if(ok) any=true;
+    });
+    panel.querySelectorAll('.section-header').forEach(function(h){
+      var cards=h.nextElementSibling;
+      h.hidden = cards.querySelectorAll('.card:not([hidden])').length===0;
+      cards.hidden = h.hidden;
+    });
+    panel.querySelector('.empty').style.display=any?'none':'block';
+  }
+  document.querySelectorAll('[data-go]').forEach(function(b){ b.addEventListener('click',function(){ go(b.dataset.go); }); });
+  document.querySelectorAll('.search').forEach(function(i){ i.addEventListener('input',function(){ filter(i); }); });
+  ['dp','fiscal','contabil'].forEach(function(k){
+    var n=document.querySelectorAll('#view-'+k+' .card').length;
+    document.querySelector('[data-count="'+k+'"]').textContent=n+(n===1?' relatório':' relatórios');
+  });
+  window.addEventListener('popstate',function(){ show(location.hash.slice(1)); });
+  show(location.hash.slice(1));
+})();
+</script>
 </body>
 </html>
