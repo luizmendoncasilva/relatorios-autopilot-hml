@@ -26,7 +26,26 @@ livro_saidas.html          → Livro Fiscal – Registro de Saídas (FIS-1141)
 holerite.html              → Holerite / Recibo de Pagamento
 extrato_mensal.html        → Extrato Mensal da folha
 relacao_de_liquidos.html   → Relação Geral dos Líquidos
+rescisao-trct.html              → TRCT e Termo de Quitação da Rescisão
+rescisao-fichaempregado.html    → Registro de Empregado (com rescisão)
+rescisao-memoriamedias.html     → Memória de Cálculo de Médias (férias, 13º e aviso prévio)
+rescisao-relacaoliquidos.html   → Relação de Líquidos da rescisão
+rescisao-gfd.html               → Guia do FGTS Digital (GFD)
+rescisao-detalheguia.html       → Detalhe da Guia Emitida (FGTS)
+admissao-contratotrabalho.html      → Contrato de Trabalho (CLT, presencial, com período de experiência)
+admissao-contratoteletrabalho.html  → Contrato de Trabalho em regime de teletrabalho
+admissao-contratointermitente.html  → Contrato de Trabalho Intermitente (art. 452-A da CLT)
+admissao-folhaponto.html            → Folha de Ponto Individual (mensal)
+ferias-memoriamedias.html           → Memória de Cálculo de Médias de Férias (por competência)
+excel-folha-relacaoliquidos.html    → Relação de Líquidos - BHUB em Excel (Folha), com visualização da planilha
+excel-ferias-relacaoliquidos.html   → Relação de Líquidos - BHUB em Excel (Férias)
+excel-rescisao-relacaoliquidos.html → Relação de Líquidos - BHUB em Excel (Rescisão)
+excel/                              → planilhas .xls para download (mesmo layout do modelo Domínio, dados fictícios)
 ```
+
+Os relatórios em Excel aparecem no índice com acentos verdes e botão de download direto no card.
+
+O botão "Voltar" de cada documento leva de volta à categoria e à seção de origem no índice (ex.: `index.html#dp:rescisao`).
 
 Cada relatório é uma página independente — sem framework, sem dependências externas além da fonte (Google Fonts, Nunito Sans) — para que qualquer alteração visual possa ser feita direto no arquivo, sem precisar rodar nada.
 
