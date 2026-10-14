@@ -26,6 +26,9 @@ livro_saidas.html          → Livro Fiscal – Registro de Saídas (FIS-1141)
 holerite.html              → Holerite / Recibo de Pagamento
 extrato_mensal.html        → Extrato Mensal da folha
 relacao_de_liquidos.html   → Relação Geral dos Líquidos
+adiantamento-extratomensal.html   → Extrato Mensal da folha de Adiantamento (DP-550)
+adiantamento-recibo.html          → Recibo de Pagamento (Holerite) de Adiantamento (DP-550)
+adiantamento-relacaoliquidos.html → Relação de Líquidos da folha de Adiantamento (DP-550)
 rescisao-trct.html              → TRCT e Termo de Quitação da Rescisão
 rescisao-fichaempregado.html    → Registro de Empregado (com rescisão)
 rescisao-memoriamedias.html     → Memória de Cálculo de Médias (férias, 13º e aviso prévio)
