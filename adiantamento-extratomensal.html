@@ -600,14 +600,12 @@
   .diffEyebrow{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#f25461;}
   .diffTitle{font-size:16px;font-weight:900;color:#18181b;margin-top:2px;}
   .diffSub{font-size:11px;font-weight:500;color:#52525b;margin-top:4px;line-height:1.5;}
-  .diffSub a{color:#0171e4;font-weight:700;text-decoration:none;}
   .diffSub strong{color:#18181b;font-weight:700;}
   .diffBox table{width:100%;border-collapse:collapse;font-size:11px;}
   .diffBox thead th{background:#f7f7f8;color:#52525b;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:8px 12px;border-bottom:1px solid #e4e4e7;}
   .diffBox tbody td{padding:8px 12px;border-bottom:1px solid #e4e4e7;vertical-align:top;color:#18181b;font-weight:500;line-height:1.45;}
-  .diffBox td.item{font-weight:800;width:19%;}
-  .diffBox td.normal{color:#52525b;width:22%;}
-  .diffBox td.adiant{width:31%;}
+  .diffBox td.item{font-weight:800;width:24%;}
+  .diffBox td.desc{width:50%;}
   .diffBox tr.grp td{background:#fde7ea;border-bottom:1px solid #f25461;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:6px 12px;}
   .rn{display:inline-block;background:rgba(1,113,228,.08);border:1px solid rgba(1,113,228,.3);color:#0171e4;font-size:9.5px;font-weight:800;padding:1px 7px;border-radius:999px;margin:0 4px 3px 0;white-space:nowrap;}
   .rn.ref{background:#f7f7f8;border-color:#d4d4d8;color:#52525b;}
@@ -618,29 +616,25 @@
 <section class="diffBox" style="max-width:794px;">
   <div class="diffHead">
     <div class="diffEyebrow">DP-550 · Folha de adiantamento</div>
-    <div class="diffTitle">O que muda em relação à folha mensal</div>
-    <div class="diffSub">Comparação com o <a href="extrato_mensal.html">Extrato Mensal</a> da folha mensal. As regras citadas são do doc <strong>Pré-requisitos e Regras — Folha de adiantamento salarial (E10)</strong>, DP-291 / DP-306.</div>
+    <div class="diffTitle">O que é exclusivo do adiantamento</div>
+    <div class="diffSub">Elementos que só existem nos relatórios da folha de adiantamento. As regras citadas são do doc <strong>Pré-requisitos e Regras — Folha de adiantamento salarial (E10)</strong>, DP-291 / DP-306.</div>
   </div>
   <table>
-    <thead><tr><th>Item</th><th>Folha mensal</th><th>Adiantamento</th><th>Regra</th></tr></thead>
+    <thead><tr><th>Elemento</th><th>O que mostra</th><th>Regra</th></tr></thead>
     <tbody>
-      <tr class="grp"><td colspan="4">Em comum nos 3 relatórios</td></tr>
-      <tr><td class="item">Tipo de Folha</td><td class="normal">Folha Mensal</td><td class="adiant">Adiantamento Salarial</td><td><span class="rn">RN-11</span><span class="diffObs">Folha separada (entry_kind = ADIANTAMENTO); não substitui nem fecha a folha mensal.</span></td></tr>
-      <tr><td class="item">Base de cálculo</td><td class="normal">Não aparece</td><td class="adiant">Campo novo no cabeçalho: Salário-base contratual bruto</td><td><span class="rn">RN-05</span><span class="rn ref">Item 1.5</span><span class="diffObs">Base diferente só por parametrização no Cockpit.</span></td></tr>
-      <tr><td class="item">Percentual e origem</td><td class="normal">Não aparece</td><td class="adiant">Campo novo no cabeçalho: 40% · Origem CCT/ACT</td><td><span class="rn">RN-04</span><span class="rn ref">Item 1.6</span><span class="diffObs">Percentual é parâmetro da empresa (1% a 100%), nunca constante no código.</span></td></tr>
-      <tr><td class="item">Data de pagamento</td><td class="normal">Não aparece</td><td class="adiant">Campo novo no cabeçalho: 20/10/2026</td><td><span class="rn">RN-03</span><span class="rn">RN-12</span><span class="diffObs">Vem só do Cockpit; competência e data de pagamento são informações distintas.</span></td></tr>
-      <tr><td class="item">Rubricas</td><td class="normal">Salário, HE, INSS, IRRF, FGTS, VT…</td><td class="adiant">Uma única rubrica: 0980 ADIANTAMENTO SALARIAL (provento)</td><td><span class="rn">RN-07</span><span class="rn ref">Dependência 5</span><span class="diffObs">Na folha mensal o mesmo valor volta como desconto. Código e natureza da rubrica ainda a definir.</span></td></tr>
-      <tr><td class="item">Encargos e bases</td><td class="normal">INSS, FGTS e IRRF calculados</td><td class="adiant">Sem incidência: todas as bases em R$ 0,00</td><td><span class="rn">RN-06</span><span class="rn ref">Questão 3</span><span class="diffObs">Exceção em aberto: IRRF no regime de caixa.</span></td></tr>
-      <tr class="grp"><td colspan="4">Só no Extrato Mensal</td></tr>
-      <tr><td class="item">Páginas</td><td class="normal">6</td><td class="adiant">3 (cards; rubrica + resumo; totais + situações)</td><td><span class="rn ref">Modelo Domínio</span></td></tr>
-      <tr><td class="item">Campo Período</td><td class="normal">01/06/2026 a 30/06/2026</td><td class="adiant">Removido (deu lugar à base e ao percentual)</td><td></td></tr>
-      <tr><td class="item">Nota informativa</td><td class="normal">—</td><td class="adiant">Caixa azul no topo: percentual, base, origem, pagamento e desconto na folha mensal</td><td><span class="rn">RN-07</span></td></tr>
-      <tr><td class="item">Legenda</td><td class="normal">IN / FG / IR / PIS / M</td><td class="adiant">+ “— sem incidência”</td><td><span class="rn">RN-06</span></td></tr>
-      <tr><td class="item">Card do colaborador</td><td class="normal">Dep./f. e Dep./SF</td><td class="adiant">Adiant. (% e dias) e Pagto.</td><td><span class="rn">RN-04</span><span class="rn">RN-03</span></td></tr>
-      <tr><td class="item">Admitido no mês</td><td class="normal">—</td><td class="adiant">Tag “Admitido no mês · pro-rata” e 40% · 26/30 dias</td><td><span class="rn">RN-09</span><span class="diffObs">Fórmula e arredondamento ficam com o motor (fora do escopo do doc); 26/30 é ilustrativo.</span></td></tr>
-      <tr><td class="item">Resumo Geral</td><td class="normal">Página própria, 4 colunas</td><td class="adiant">Página 2, 3 colunas; banner “Total do Adiantamento”</td><td><span class="rn ref">Modelo Domínio</span></td></tr>
-      <tr><td class="item">Totais da Folha</td><td class="normal">INSS/FGTS/IRRF preenchidos + provisões</td><td class="adiant">Tudo zerado; sem Provisão de Férias e de 13º</td><td><span class="rn">RN-06</span></td></tr>
-      <tr><td class="item">Situações</td><td class="normal">—</td><td class="adiant">+ linha Admissões</td><td><span class="rn">RN-09</span></td></tr>
+      <tr class="grp"><td colspan="3">Em todos os relatórios de adiantamento</td></tr>
+      <tr><td class="item">Tipo de Folha “Adiantamento Salarial”</td><td class="desc">Identifica a folha de adiantamento, separada da folha mensal da competência.</td><td><span class="rn">RN-11</span><span class="diffObs">entry_kind = ADIANTAMENTO; não substitui nem fecha a folha mensal.</span></td></tr>
+      <tr><td class="item">Base de cálculo</td><td class="desc">Cabeçalho mostra a base usada: Salário-base contratual bruto.</td><td><span class="rn">RN-05</span><span class="rn ref">Item 1.5</span><span class="diffObs">Base diferente só por parametrização no Cockpit.</span></td></tr>
+      <tr><td class="item">Percentual e origem</td><td class="desc">Cabeçalho mostra 40% e a origem do parâmetro (CCT/ACT).</td><td><span class="rn">RN-04</span><span class="rn ref">Item 1.6</span><span class="diffObs">Parâmetro da empresa, de 1% a 100%; nunca constante no código.</span></td></tr>
+      <tr><td class="item">Data de pagamento</td><td class="desc">Cabeçalho mostra a data em que o adiantamento é pago (20/10/2026).</td><td><span class="rn">RN-03</span><span class="rn">RN-12</span><span class="diffObs">Vem só do Cockpit; não é a competência.</span></td></tr>
+      <tr><td class="item">Rubrica 0980 ADIANTAMENTO SALARIAL</td><td class="desc">Única rubrica do relatório, como provento.</td><td><span class="rn">RN-07</span><span class="rn ref">Dependência 5</span><span class="diffObs">O mesmo valor volta como desconto na folha mensal. Código e natureza ainda a definir.</span></td></tr>
+      <tr><td class="item">Sem incidência de encargos</td><td class="desc">INSS, FGTS e IRRF não são calculados; as bases aparecem zeradas.</td><td><span class="rn">RN-06</span><span class="rn ref">Questão 3</span><span class="diffObs">Exceção em aberto: IRRF no regime de caixa.</span></td></tr>
+      <tr class="grp"><td colspan="3">Só no Extrato Mensal</td></tr>
+      <tr><td class="item">Nota informativa</td><td class="desc">Caixa azul no topo com percentual, base, origem, data de pagamento e desconto na folha mensal.</td><td><span class="rn">RN-06</span><span class="rn">RN-07</span></td></tr>
+      <tr><td class="item">Legenda “— sem incidência”</td><td class="desc">Indica rubrica que não incide em nenhuma base.</td><td><span class="rn">RN-06</span></td></tr>
+      <tr><td class="item">Adiant. e Pagto. no card</td><td class="desc">Cada colaborador mostra o percentual aplicado (e os dias, se pro-rata) e a data de pagamento.</td><td><span class="rn">RN-04</span><span class="rn">RN-03</span></td></tr>
+      <tr><td class="item">Admitido no mês · pro-rata</td><td class="desc">Colaborador admitido antes da data de referência recebe proporcional aos dias (ex.: 40% · 26/30).</td><td><span class="rn">RN-09</span><span class="diffObs">Fórmula e arredondamento ficam com o motor; 26/30 é ilustrativo.</span></td></tr>
+      <tr><td class="item">Total do Adiantamento</td><td class="desc">Banner do Resumo Geral com o valor total adiantado na competência.</td><td><span class="rn ref">Modelo Domínio</span></td></tr>
     </tbody>
   </table>
   <div class="diffFoot"><strong>Azul</strong> = regra de negócio (RN/RF) do doc de pré-requisitos · <strong>Cinza</strong> = item, dependência ou questão em aberto do mesmo doc, ou decisão de layout seguindo o modelo Domínio. Este painel é só da vitrine e não sai na impressão.</div>
